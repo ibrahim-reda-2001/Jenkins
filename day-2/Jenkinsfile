@@ -6,11 +6,7 @@ pipeline {
         }
     }
     stages {
-        stage('prep') {
-            steps {
-                git 'https://github.com/ibrahim-reda-2001/jenkins-node_project.git'
-            }
-        }
+      
         stage('ci') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-cred', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
