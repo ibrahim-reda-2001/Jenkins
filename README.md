@@ -33,4 +33,42 @@ Key focuses include:
 ### Installation  
 1. **Clone the repository**:  
    ```bash
-   git clone https://github.com/ibrahim-reda-2001/Jenkins.git
+   git clone https://github.com/ibrahim-reda-2001/Jenkins.git 
+   ```
+2. **Images use in this Project**:
+   ```bash
+   git pull ibrahimelmsery1/jenkins-docker-kubectl
+   git pull ibrahimelmsery1/dockerslave //that is image use for docker clien 
+   ```
+3. **How to run Jenkins**
+   ```bash   
+    docker run -d --name jenkins -p 8000:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  ibrahimelmsery1/jenkins-docker-kubectl
+   ```
+4. **How to access Jenkins**
+    ```bash
+    localhost:3000   
+    ```
+...
+
+### Contributing
+Contributions are welcome! If you have any improvements, suggestions, or bug fixes, feel free to open an issue or submit a pull request.
+
+
+
+### Contact
+For any questions or inquiries, you can reach me at:
+- **Email**: [ibrahim reda](mailto:ibrahim_reda17@outlook.com)
+- **LinkedIn**: [Ibrahim Reda](https://www.linkedin.com/in/ibrahim-reda-929099220/)
+- **GitHub**: [ibrahim-reda](https://github.com/ibrahim-reda-2001)
+
+---
+
+Thank you for checking out my Jenkins learning projects! Happy automating! 🚀    
+
+     
+
+   
+
+
+
+
