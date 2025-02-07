@@ -24,9 +24,7 @@ Before getting started, ensure you have the following installed:
 2. **Ensure Docker is running**
 3. **Run Jenkins in Docker:**
    ```sh
-   docker run -d -p 8000:8080 -p 50000:50000 \
-   -v jenkins_home:/var/jenkins_home \
-   --name jenkins ibrahimelmsery1/jenkins-docker-kubectl
+   docker run -d --name jenkins -p 8000:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock  ibrahimelmsery1/jenkins-docker-kubectl
 4. **Access Jenkins:**
    ```sh
    localhost:8000   
