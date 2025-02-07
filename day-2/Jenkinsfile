@@ -5,6 +5,11 @@ pipeline {
             args '-v /var/run/docker.sock:/var/run/docker.sock'
         }
     }
+
+    environment {
+        CREDENTIALS_ID = 'mo'
+        SLACK_CHANNEL = '#nti-nodejs' // Specify the Slack channel
+    }
     stages {
         stage('prep') {
             steps {
@@ -13,7 +18,7 @@ pipeline {
         }
         stage('ci') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'mo', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                withCredentials([usernamePassword(credentialsId: "${CREDENTIALS_ID}", usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                     sh """
                     docker build . -f dockerfile -t ibrahimelmsery1/iti-lab
                     echo \$PASSWORD | docker login -u \$USERNAME --password-stdin
@@ -34,6 +39,20 @@ pipeline {
         }
     }
     post {
+        success {
+            slackSend(
+                channel: "${env.SLACK_CHANNEL}",
+                color: "#00FF00",
+                message: "SUCCESSFUL: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
+        failure {
+            slackSend(
+                channel: "${env.SLACK_CHANNEL}",
+                color: "#FF0000",
+                message: "FAILED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+            )
+        }
         cleanup {
             cleanWs()
         }
